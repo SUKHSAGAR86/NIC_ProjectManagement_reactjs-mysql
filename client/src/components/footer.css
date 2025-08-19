@@ -1,0 +1,11 @@
+.contact-link {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.contact-link:hover {
+    color: #ff8800fb;
+    text-shadow: 0 0 8px #0077ff, 0 0 15px #181815;
+}
