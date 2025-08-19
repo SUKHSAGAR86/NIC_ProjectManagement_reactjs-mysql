@@ -71,7 +71,7 @@ const AboutUs = () => {
                 </Col>
                 <Col md={6}>
                   <ul className="list-unstyled">
-                    <li className="mb-2">• Database: MongoDB</li>
+                    <li className="mb-2">• Database: My Sql</li>
                     <li className="mb-2">• Authentication: JWT (JSON Web Tokens)</li>
                   </ul>
                 </Col>

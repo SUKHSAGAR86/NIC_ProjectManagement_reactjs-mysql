@@ -1,12 +1,206 @@
-import React, { useState } from 'react';
-import Form from '../../components/Form';
+// import React, { useState } from 'react';
+// import Form from '../../components/Form';
+
+// const Contacts = () => {
+//   const [formData, setFormData] = useState({
+//     name: '',
+//     email: '',
+//     subject: '',
+//     message: ''
+//   });
+//   const [errors, setErrors] = useState({});
+//   const [isSubmitting, setIsSubmitting] = useState(false);
+//   const [submitStatus, setSubmitStatus] = useState(null);
+
+//   const validateForm = () => {
+//     const newErrors = {};
+//     if (!formData.name.trim()) {
+//       newErrors.name = 'Name is required';
+//     }
+//     if (!formData.email.trim()) {
+//       newErrors.email = 'Email is required';
+//     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+//       newErrors.email = 'Email is invalid';
+//     }
+//     if (!formData.subject.trim()) {
+//       newErrors.subject = 'Subject is required';
+//     }
+//     if (!formData.message.trim()) {
+//       newErrors.message = 'Message is required';
+//     }
+//     setErrors(newErrors);
+//     return Object.keys(newErrors).length === 0;
+//   };
+
+//   const handleChange = (e) => {
+//     const { name, value } = e.target;
+//     setFormData(prev => ({
+//       ...prev,
+//       [name]: value
+//     }));
+//     // Clear error when user starts typing
+//     if (errors[name]) {
+//       setErrors(prev => ({
+//         ...prev,
+//         [name]: ''
+//       }));
+//     }
+//   };
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     if (!validateForm()) return;
+
+//     setIsSubmitting(true);
+//     setSubmitStatus(null);
+
+//     try {
+//       const response = await fetch('http://localhost:5000/api/contacts/add-contact', {
+//         method: 'POST',
+//         headers: {
+//           'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify(formData)
+//       });
+
+//       const data = await response.json();
+
+//       if (!response.ok) {
+//         throw new Error(data.message || 'Failed to submit contact form');
+//       }
+
+//       setSubmitStatus('success');
+//       setFormData({
+//         name: '',
+//         email: '',
+//         subject: '',
+//         message: ''
+//       });
+//     } catch (error) {
+//       console.error('Error submitting form:', error);
+//       setSubmitStatus('error');
+//       setErrors(prev => ({
+//         ...prev,
+//         submit: error.message
+//       }));
+//     } finally {
+//       setIsSubmitting(false);
+//     }
+//   };
+
+//   const contactFields = [
+//     {
+//       name: 'name',
+//       label: 'Name',
+//       type: 'text',
+//       placeholder: 'Your Name'
+//     },
+//     {
+//       name: 'email',
+//       label: 'Email',
+//       type: 'email',
+//       placeholder: 'Your Email'
+//     },
+//     {
+//       name: 'subject',
+//       label: 'Subject',
+//       type: 'text',
+//       placeholder: 'Subject'
+//     },
+//     {
+//       name: 'message',
+//       label: 'Message',
+//       type: 'textarea',
+//       placeholder: 'Type your message here...'
+//     }
+//   ];
+
+//   return (
+//     <div className="container py-5">
+//       <div className="row">
+//         {/* Contact Information */}
+//         <div className="col-md-4 mb-4">
+//           <div className="card h-100">
+//             <div className="card-body">
+//               <h3 className="card-title mb-4">Contact Information</h3>
+//               <div className="mb-4">
+//                 <h5 className="mb-3">Address</h5>
+//                 <p className="mb-0">
+//                   <i className="fas fa-map-marker-alt me-2 text-primary"></i>
+//                   National Informatics Centre<br />
+//                   Gaurela-pendra-marwahi<br />
+//                   Chhattisgarh
+//                 </p>
+//               </div>
+//               <div className="mb-4">
+//                 <h5 className="mb-3">Contact</h5>
+//                 <p className="mb-2">
+//                   <i className="fas fa-phone me-2 text-primary"></i>
+//                   +91 9993426936
+//                 </p>
+//                 <p className="mb-0">
+//                   <i className="fas fa-envelope me-2 text-primary"></i>
+//             dpr-chhattisgarh@cg.gov.in
+//                 </p>
+//               </div>
+//               <div>
+//                 <h5 className="mb-3">Follow Us</h5>
+//                 <div class="d-flex gap-3">
+//   <a href="#" class="text-primary">
+//     <i class="bi bi-facebook fs-4"></i>
+//   </a>
+//   <a href="#" class="text-primary">
+//     <i class="bi bi-twitter fs-4"></i>
+//   </a>
+//   <a href="#" class="text-primary">
+//     <i class="bi bi-linkedin fs-4"></i>
+//   </a>
+//   <a href="#" class="text-primary">
+//     <i class="bi bi-instagram fs-4"></i>
+//   </a>
+// </div>
+
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+
+//         <div className="col-md-8">
+//           <div className="card h-100">
+//             <div className="card-body">
+//               <h3 className="card-title mb-4">Send Us a Message</h3>
+//               <Form
+//                 formData={formData}
+//                 errors={errors}
+//                 handleChange={handleChange}
+//                 handleSubmit={handleSubmit}
+//                 isSubmitting={isSubmitting}
+//                 submitStatus={submitStatus}
+//                 fields={contactFields}
+//                 submitButtonText="Send Message"
+//               />
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Contacts;
+
+
+
+
+import React, { useState } from "react";
+import Form from "../../components/Form";
+import "bootstrap-icons/font/bootstrap-icons.css"; // ✅ Import Bootstrap Icons
 
 const Contacts = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
   });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -14,38 +208,32 @@ const Contacts = () => {
 
   const validateForm = () => {
     const newErrors = {};
-    if (!formData.name.trim()) {
-      newErrors.name = 'Name is required';
-    }
+    if (!formData.name.trim()) newErrors.name = "Name is required";
     if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
+      newErrors.email = "Email is required";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Email is invalid';
+      newErrors.email = "Email is invalid";
     }
-    if (!formData.subject.trim()) {
-      newErrors.subject = 'Subject is required';
-    }
-    if (!formData.message.trim()) {
-      newErrors.message = 'Message is required';
-    }
+    if (!formData.subject.trim()) newErrors.subject = "Subject is required";
+    if (!formData.message.trim()) newErrors.message = "Message is required";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
-    // Clear error when user starts typing
     if (errors[name]) {
-      setErrors(prev => ({
+      setErrors((prev) => ({
         ...prev,
-        [name]: ''
+        [name]: "",
       }));
     }
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateForm()) return;
@@ -54,33 +242,26 @@ const Contacts = () => {
     setSubmitStatus(null);
 
     try {
-      const response = await fetch('http://localhost:5000/api/contacts/add-contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData)
-      });
+      const response = await fetch(
+        "http://localhost:5000/api/contacts/add-contact",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        }
+      );
 
       const data = await response.json();
+      if (!response.ok) throw new Error(data.message || "Failed to submit form");
 
-      if (!response.ok) {
-        throw new Error(data.message || 'Failed to submit contact form');
-      }
-
-      setSubmitStatus('success');
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
-      });
+      setSubmitStatus("success");
+      setFormData({ name: "", email: "", subject: "", message: "" });
     } catch (error) {
-      console.error('Error submitting form:', error);
-      setSubmitStatus('error');
-      setErrors(prev => ({
+      console.error("Error submitting form:", error);
+      setSubmitStatus("error");
+      setErrors((prev) => ({
         ...prev,
-        submit: error.message
+        submit: error.message,
       }));
     } finally {
       setIsSubmitting(false);
@@ -88,74 +269,65 @@ const Contacts = () => {
   };
 
   const contactFields = [
+    { name: "name", label: "Name", type: "text", placeholder: "Your Name" },
+    { name: "email", label: "Email", type: "email", placeholder: "Your Email" },
+    { name: "subject", label: "Subject", type: "text", placeholder: "Subject" },
     {
-      name: 'name',
-      label: 'Name',
-      type: 'text',
-      placeholder: 'Your Name'
+      name: "message",
+      label: "Message",
+      type: "textarea",
+      placeholder: "Type your message here...",
     },
-    {
-      name: 'email',
-      label: 'Email',
-      type: 'email',
-      placeholder: 'Your Email'
-    },
-    {
-      name: 'subject',
-      label: 'Subject',
-      type: 'text',
-      placeholder: 'Subject'
-    },
-    {
-      name: 'message',
-      label: 'Message',
-      type: 'textarea',
-      placeholder: 'Type your message here...'
-    }
   ];
 
   return (
     <div className="container py-5">
-      <div className="row">
-        {/* Contact Information */}
-        <div className="col-md-4 mb-4">
-          <div className="card h-100">
+      <div className="row g-4">
+        {/* Contact Info */}
+        <div className="col-md-4">
+          <div className="card shadow-lg border-0 h-100">
             <div className="card-body">
-              <h3 className="card-title mb-4">Contact Information</h3>
+              <h3 className="card-title mb-4 text-primary fw-bold">
+                Contact Information
+              </h3>
+
               <div className="mb-4">
-                <h5 className="mb-3">Address</h5>
-                <p className="mb-0">
-                  <i className="fas fa-map-marker-alt me-2 text-primary"></i>
-                  National Informatics Centre<br />
-                  Gaurela-pendra-marwahi<br />
+                <h5 className="mb-2">📍 Address</h5>
+                <p className="mb-0 text-muted">
+                  <i className="bi bi-geo-alt-fill text-primary me-2"></i>
+                  National Informatics Centre <br />
+                  Gaurela-Pendra-Marwahi <br />
                   Chhattisgarh
                 </p>
               </div>
+
               <div className="mb-4">
-                <h5 className="mb-3">Contact</h5>
-                <p className="mb-2">
-                  <i className="fas fa-phone me-2 text-primary"></i>
+                <h5 className="mb-2">📞 Contact</h5>
+                <p className="mb-1 text-muted">
+                  <i className="bi bi-telephone-fill text-primary me-2"></i>
                   +91 9993426936
                 </p>
-                <p className="mb-0">
-                  <i className="fas fa-envelope me-2 text-primary"></i>
-                  dio-gpm-ct@nic.in
+                <p className="mb-0 text-muted">
+                  <i className="bi bi-envelope-fill text-primary me-2"></i>
+                  dpr-chhattisgarh@cg.gov.in
                 </p>
               </div>
+
+              {/* Social Icons */}
               <div>
-                <h5 className="mb-3">Follow Us</h5>
+                <h5 className="mb-3">🌐 Follow Us</h5>
                 <div className="d-flex gap-3">
-                  <a href="#" className="text-primary">
-                    <i className="fab fa-facebook fa-lg"></i>
+                  <a href="#" className="social-icon facebook">
+                    <i className="bi bi-facebook"></i>
                   </a>
-                  <a href="#" className="text-primary">
-                    <i className="fab fa-twitter fa-lg"></i>
+                  <a href="#" className="social-icon twitter">
+                    <i className="bi bi-twitter"></i>
                   </a>
-                  <a href="#" className="text-primary">
-                    <i className="fab fa-linkedin fa-lg"></i>
+                  <a href="#" className="social-icon linkedin">
+                    <i className="bi bi-linkedin"></i>
                   </a>
-                  <a href="#" className="text-primary">
-                    <i className="fab fa-instagram fa-lg"></i>
+                  <a href="#" className="social-icon instagram">
+                    <i className="bi bi-instagram"></i>
                   </a>
                 </div>
               </div>
@@ -163,10 +335,13 @@ const Contacts = () => {
           </div>
         </div>
 
+        {/* Contact Form */}
         <div className="col-md-8">
-          <div className="card h-100">
+          <div className="card shadow-lg border-0 h-100">
             <div className="card-body">
-              <h3 className="card-title mb-4">Send Us a Message</h3>
+              <h3 className="card-title mb-4 text-primary fw-bold">
+                Send Us a Message
+              </h3>
               <Form
                 formData={formData}
                 errors={errors}
@@ -181,6 +356,31 @@ const Contacts = () => {
           </div>
         </div>
       </div>
+
+      {/* Extra CSS for Social Icons */}
+      <style>{`
+        .social-icon {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 45px;
+          height: 45px;
+          border-radius: 50%;
+          font-size: 1.3rem;
+          color: #fff;
+          transition: all 0.3s ease;
+          text-decoration: none;
+        }
+        .facebook { background: #1877f2; }
+        .twitter { background: #1da1f2; }
+        .linkedin { background: #0077b5; }
+        .instagram { background: #e4405f; }
+        .social-icon:hover {
+          transform: scale(1.15);
+          box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+          opacity: 0.9;
+        }
+      `}</style>
     </div>
   );
 };
